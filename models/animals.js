@@ -20,5 +20,5 @@ const animals = [
     }
 ];
 
-// we export the fruits
+// we export the animals data
 module.exports = animals

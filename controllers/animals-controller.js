@@ -6,24 +6,23 @@ const router = express.Router()
 const animals = require("../models/animals.js")
 
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 // ROUTES
 ///////////////////////////////////////////////////////////////////////////////////////////
 // INDEX
-router.get("/", (req, res) => {
-    res.render("../views/index.ejs", {animals})
+router.get("/", async (req, res) => {
+    await res.render("../views/index.ejs", {animals})
 })
 
 
 // NEW
-router.get("/new", (req, res) => {
-    res.render("../views/new.ejs")
+router.get("/new", async (req, res) => {
+    await res.render("../views/new.ejs")
 })
 
 
 // CREATE
-router.post("/", (req,res) => {
+router.post("/", async (req,res) => {
     const body = req.body
     if (body.extinct === "on"){
         body.extinct = true
@@ -33,33 +32,32 @@ router.post("/", (req,res) => {
     // add the animal to the array
     animals.push(body)
     // redirect them to the index page
-    res.redirect("/animals")
+    await res.redirect("/animals")
 })
 
 
 // DESTROY
-router.delete("/:id", (req,res) => {
+router.delete("/:id", async (req,res) => {
     const id = req.params.id
     // arr.splice(index, numOfItemToCut)
     animals.splice(id,1);
     // redirects to index
-    res.redirect("/animals")
+    await res.redirect("/animals")
 })
 // test within curl
 // curl -X DELETE localhost:3000/fruits/0
 
 
 // EDIT
-router.get("/:id/edit", (req,res) => {
+router.get("/:id/edit", async (req,res) => {
     const id = req.params.id
     const animal = animals[id]
-
-    res.render("../views/edit.ejs", {animal, id})
+    await res.render("../views/edit.ejs", {animal, id})
 })
 
 
 // UPDATE
-router.put("/:id", (req,res) => {
+router.put("/:id", async (req,res) => {
     const id = req.params.id
     const body = req.body
     if (body.extinct === "on"){
@@ -67,18 +65,16 @@ router.put("/:id", (req,res) => {
     } else {
         body.extinct = false
     }
-
     animals[id] = body
-    res.redirect("/animals")
+    await res.redirect("/animals")
 })
 
 
 // SHOW
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
     const id = req.params.id
     const animal = animals[id]
-
-    res.render("../views/show.ejs", {animal, id})
+    await res.render("../views/show.ejs", {animal, id})
 })
 
 

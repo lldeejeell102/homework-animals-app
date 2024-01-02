@@ -2,7 +2,6 @@
 // DEPENDENCIES
 ///////////////////////////////////////////////////////////////////////////////////////////
 const express = require("express")
-const { append } = require("express/lib/response")
 const Animal = require("../models/animals.js")
 
 const router = express.Router()
@@ -31,12 +30,8 @@ router.get("/seed", async (req, res) => {
 
 // INDEX
 router.get("/", async (req, res) => {
-    try{
-        const animals = await Animal.find({})
-        res.render("../views/index.ejs", {animals})
-    } catch {
-        console.log(error)
-    }
+        const animals = await Animal.find({}).catch((error) => errorHandler(error, res))
+        res.render("views/index.ejs", {animals})
 })
 
 

@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
     res.send("Sever is working")
 })
 
-app.use("/animals", AnimalRouter)
+app.use("/animal", AnimalRouter)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////

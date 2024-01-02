@@ -10,7 +10,7 @@ const animalSchema = new mongoose.Schema({
     extinct: Boolean,
     location: { type: String, required: true },
     lifeExpectancy: { type: Number, required: true },
-})
+}, {timestamps: true})
 
 // compose our model from the schema
 const Animal = mongoose.model("Animal", animalSchema)

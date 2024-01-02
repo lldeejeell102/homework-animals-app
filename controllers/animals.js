@@ -2,19 +2,40 @@
 // DEPENDENCIES
 ///////////////////////////////////////////////////////////////////////////////////////////
 const express = require("express")
+const { append } = require("express/lib/response")
+const Animal = require("../models/animals.js")
+
 const router = express.Router()
-const animals = require("../models/animals.js")
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// ERROR HANDLER
+///////////////////////////////////////////////////////////////////////////////////////////
+function errorHandler(error, res){
+    res.json(error)
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-// ROUTES
+// ROUTES -- INDUCES(S)
 ///////////////////////////////////////////////////////////////////////////////////////////
+// SEED
+router.get("/seed", async (req, res) => {
+    await Animal.deleteMany({})
+    const animals = await Animal.create([
+        {species: "Squirrel", extinct: false, location: "North America", lifeExpectancy: 50},
+        {species: "Frog", extinct: false, location: "North America", lifeExpectancy: 5},
+        {species: "Dog", extinct: false, location: "North America", lifeExpectancy: 15}
+    ]).catch((error) => errorHandler(error, res))
+    res.json(animals)
+})
+
 // INDEX
 router.get("/", async (req, res) => {
     try{
-        await res.render("../views/index.ejs", {animals})
+        const animals = await Animal.find({})
+        res.render("../views/index.ejs", {animals})
     } catch {
-        console.log(err)
+        console.log(error)
     }
 })
 

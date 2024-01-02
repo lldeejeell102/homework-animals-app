@@ -1,24 +1,19 @@
-// since we don't have a database
-const animals = [
-    {
-        species:'squirrel',
-        extinct: false,
-        location: 'north america',
-        lifeExpectancy: 50,
-    },
-    {
-        species:'frog',
-        extinct: false,
-        location: 'north america',
-        lifeExpectancy: 5,
-    },
-    {
-        species:'dog',
-        extinct: false,
-        location: 'north america',
-        lifeExpectancy: 15,
-    }
-];
+////////////////////////////////////////////////////////////////////////////////////////////
+// DEPENDENCIES
+////////////////////////////////////////////////////////////////////////////////////////////
+const mongoose = require("mongoose")
 
-// we export the animals data
-module.exports = animals
+
+// ANIMAL SCHEMA
+const animalSchema = new mongoose.Schema({
+    species: { type: String, required: true },
+    extinct: Boolean,
+    location: { type: String, required: true },
+    species: { type: Number, required: true },
+})
+
+// compose our model from the schema
+const Animal = mongoose.model("Animal", animalSchema)
+
+// export our model
+module.exports = Animal

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animals</title>
+</head>
+<body>
+    <h1>All the Animals</h1>
+    <nav>
+        <a href="/animals/new">Add a New Animal</a>
+    </nav>
+    <% animals.forEach((animal, index) => { %>
+        <a href="/animal/<%= animal._id %>"><h2><%= animal.species %></h2></a>
+    <% }) %>
+        <!-- ADD DELETE FORM HERE -->
+        <!-- <form action="/animals/<#%= i %>?_method=DELETE" method="POST">
+            <input type="submit" value="delete">
+        </form> -->
+</body>
+</html>

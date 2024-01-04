@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a New Animal</title>
+</head>
+<body>
+    <h1>New Animal Page</h1>
+    <form action="/animals" method="POST">
+        <label>Species: <input type="text" name="species" placeholder="animal name (species)"></label>
+        <label>Location: <input type="text" name="location" placeholder="country name"></label>
+        <label>Life Expectancy: <input type="number" name="lifeExpectancy" placeholder="years"></label>
+        <label>Extinct: <input type="checkbox" name="extinct"></label>
+        <input type="submit" value="Add Animal">
+    </form>
+</body>
+</html>

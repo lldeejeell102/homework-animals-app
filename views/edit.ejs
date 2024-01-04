@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update <%= animal.species %></title>
+</head>
+<body>
+    <h1>Update <%= animal.species %></h1>
+    <form action="/animals/<%= id %>?_method=PUT" method="POST">
+        <label>Species: <input type="text" name="species" value="<%= animal.species %>"></label>
+        <label>Is It Extinct: <input type="checkbox" name="extinct"
+            
+            <% if (animal.extinct === true) { %>
+                checked
+            <% } %>
+            ></label>
+        <label>Location: <input type="text" name="location" value="<%= animal.location %>"></label>
+        <label>Life Expectancy: <input type="number" name="lifeExpectancy" value="<%= animal.lifeExpectancy %>"></label>
+        <input type="submit" value="<%= animal.species %>">
+    </form>
+</body>
+</html>
